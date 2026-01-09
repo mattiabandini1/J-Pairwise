@@ -1,0 +1,18 @@
+{
+  "className": "LoginTest",
+  "packageName": "com.azienda.qa.login",
+  "parameters": [
+    {
+      "name": "Browser",
+      "values": ["Chrome", "Firefox", "Edge"]
+    },
+    {
+      "name": "OS",
+      "values": ["Windows", "Linux", "Mac"]
+    },
+    {
+      "name": "Role",
+      "values": ["Admin", "Editor", "Viewer"]
+    }
+  ]
+}
