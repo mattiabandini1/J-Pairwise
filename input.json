@@ -1,6 +1,6 @@
 {
   "className": "LoginTest",
-  "packageName": "com.azienda.qa.login",
+  "packageName": "com.mattiabandini.jpairwise",
   "parameters": [
     {
       "name": "Browser",
