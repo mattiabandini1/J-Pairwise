@@ -47,20 +47,20 @@ public class JavaTestGenerator {
                     })
                     void testGeneratedCombinations(%s) {
                         %s app = new %s();
-                        
+                
                         var result = app.%s(%s);
-                        
+                
                         var expected = getExpectedResult(%s);
-                        
+                
                         Assertions.assertEquals(expected, result);
                     }
-                    
+                
                     private String getExpectedResult(%s) {
                         // TODO: Implement your verification logic here!
                         // Example:
                         // if (role.equals("Admin")) return "Success";
                         // return "Failure";
-                        
+                
                         throw new UnsupportedOperationException("getExpectedResult() not implemented yet");
                     }
                 }

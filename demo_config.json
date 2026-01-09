@@ -1,7 +1,7 @@
 {
-  "className": "LoginTest",
+  "className": "GeneratedDemoTest",
   "packageName": "com.mattiabandini.jpairwise",
-  "targetClassName": "LoginManager",
+  "targetClassName": "DemoLoginManager",
   "targetMethodName": "attemptLogin",
   "parameters": [
     {

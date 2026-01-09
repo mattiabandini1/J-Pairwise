@@ -14,11 +14,7 @@ public class Main {
             System.out.println("---J-PAIRWISE STARTED---");
 
             JsonParser parser = new JsonParser();
-            InputData input = parser.readInput("input.json");
-
-            System.out.println("Input loaded successfully");
-            System.out.println("Target class: " + input.getClassName());
-            System.out.println("Parameters found: " + input.getParameters().size());
+            InputData input = parser.readInput("demo_config.json");
 
             IpogStrategy strategy = new IpogStrategy();
             List<TestCase> tests = strategy.generateTestCase(input.getParameters());
