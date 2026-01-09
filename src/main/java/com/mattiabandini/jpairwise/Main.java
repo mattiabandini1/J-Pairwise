@@ -26,7 +26,8 @@ public class Main {
 
         JavaTestGenerator generator = new JavaTestGenerator();
         try {
-            generator.generateFile(List.of(browser, os, language), tests, "GeneratedTest");
+            String targetPackage = "com.mattiabandini.jpairwise";
+            generator.generateFile(List.of(browser, os, language), tests, "GeneratedTest", targetPackage);
         } catch (Exception e) {
             e.printStackTrace();
         }

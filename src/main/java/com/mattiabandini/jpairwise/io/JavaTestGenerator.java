@@ -13,13 +13,20 @@ import java.util.stream.Collectors;
 
 public class JavaTestGenerator {
 
-    public void generateFile(List<Parameter> parameters, List<TestCase> testCases, String className) throws IOException {
+    public void generateFile(List<Parameter> parameters, List<TestCase> testCases, String className, String packageName) throws IOException {
         String methodArgs = generateMethodSignature(parameters);
-
         String csvBody = generateCsvBody(parameters, testCases);
+        String printArgs = generatePrintArgs(parameters);
+
+        String packagePath = packageName.replace(".", "/");
+        Path directory = Path.of("src", "test", "java", packagePath);
+
+        Files.createDirectories(directory);
+
+        Path filePath = directory.resolve(className + ".java");
 
         String fileContent = """
-                package com.mattiabandini.jpairwise.tests;
+                package %s;
                 
                 import org.junit.jupiter.params.ParameterizedTest;
                 import org.junit.jupiter.params.provider.CsvSource;
@@ -34,12 +41,11 @@ public class JavaTestGenerator {
                         System.out.println("Test running: " + %s);
                     }
                 }
-                """.formatted(className, csvBody, methodArgs, generatePrintArgs(parameters));
+                """.formatted(packageName, className, csvBody, methodArgs, printArgs);
 
-        Path path = Path.of(className + ".java");
-        Files.writeString(path, fileContent, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+        Files.writeString(filePath, fileContent, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 
-        System.out.println("File generated: " + path.toAbsolutePath());
+        System.out.println("File generated: " + filePath.toAbsolutePath());
     }
 
     private String generateMethodSignature(List<Parameter> parameters) {
