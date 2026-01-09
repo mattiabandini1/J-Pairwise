@@ -2,6 +2,7 @@ package com.mattiabandini.jpairwise;
 
 import com.mattiabandini.jpairwise.engine.IpogStrategy;
 import com.mattiabandini.jpairwise.engine.Pair;
+import com.mattiabandini.jpairwise.io.JavaTestGenerator;
 import com.mattiabandini.jpairwise.model.Parameter;
 import com.mattiabandini.jpairwise.model.TestCase;
 
@@ -21,6 +22,13 @@ public class Main {
         System.out.println("Generated tests: " + tests.size());
         for (TestCase test : tests) {
             System.out.println(test);
+        }
+
+        JavaTestGenerator generator = new JavaTestGenerator();
+        try {
+            generator.generateFile(List.of(browser, os, language), tests, "GeneratedTest");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
