@@ -1,6 +1,8 @@
 {
   "className": "LoginTest",
   "packageName": "com.mattiabandini.jpairwise",
+  "targetClassName": "LoginManager",
+  "targetMethodName": "attemptLogin",
   "parameters": [
     {
       "name": "Browser",
