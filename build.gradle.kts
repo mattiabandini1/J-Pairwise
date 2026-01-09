@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.testing.Test
+
 plugins {
     id("java")
     id("application")
@@ -17,7 +19,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
-tasks.test {
+tasks.withType<Test> {
     useJUnitPlatform()
 }
 
@@ -28,6 +30,5 @@ java {
 }
 
 application {
-    // Assicurati che il percorso coincida con il tuo package
     mainClass.set("com.mattiabandini.jpairwise.Main")
 }
