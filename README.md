@@ -53,11 +53,11 @@ The project includes a demo configuration to let you try the tool immediately.
 3.  **Run the Generator:**
     You can run it directly with the default demo configuration:
     ```bash
-    java -jar jpairwise.jar
+    java -jar build/libs/J-Pairwise-1.0-SNAPSHOT-all.jar
     ```
     Or specify your own configuration file:
     ```bash
-    java -jar jpairwise.jar my_custom_config.json
+    java -jar build/libs/J-Pairwise-1.0-SNAPSHOT-all.jar my_custom_config.json
     ```
 
 4.  **Finish the Test:**
