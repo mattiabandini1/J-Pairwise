@@ -1,5 +1,6 @@
 package com.mattiabandini.jpairwise;
 
+import com.mattiabandini.jpairwise.engine.IpogStrategy;
 import com.mattiabandini.jpairwise.engine.Pair;
 import com.mattiabandini.jpairwise.model.Parameter;
 import com.mattiabandini.jpairwise.model.TestCase;
@@ -10,21 +11,15 @@ import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-        Pair p1 = new Pair(0, "a", 1, "b");
-        System.out.println("Pair 1: " + p1);
+        Parameter browser = new Parameter("Browser", List.of("Chrome", "Firefox"));
+        Parameter os = new Parameter("OS", List.of("Windows", "Linux", "Mac"));
 
-        Pair p2 = new Pair(0, "a", 1, "b");
-        System.out.println("Pair 2: " + p2);
+        IpogStrategy strategy = new IpogStrategy();
+        List<TestCase> tests = strategy.generateTestCase(List.of(browser, os));
 
-        System.out.println("Pair 1 is equals to pair 2? " + p1.equals(p2));
-
-        Set<Pair> coveredPairs = new HashSet<>();
-        coveredPairs.add(p1);
-        coveredPairs.add(p2);
-
-        System.out.println("Set dimension: " + coveredPairs.size());
-
-        // Test order error
-        // new Pair(1, "b", 0, "a");
+        System.out.println("Generated tests: " + tests.size());
+        for (TestCase test : tests) {
+            System.out.println(test);
+        }
     }
 }
