@@ -1,5 +1,6 @@
 package com.mattiabandini.jpairwise.io;
 
+import com.mattiabandini.jpairwise.model.InputData;
 import com.mattiabandini.jpairwise.model.Parameter;
 import com.mattiabandini.jpairwise.model.TestCase;
 
@@ -13,21 +14,28 @@ import java.util.stream.Collectors;
 
 public class JavaTestGenerator {
 
-    public void generateFile(List<Parameter> parameters, List<TestCase> testCases, String className, String packageName) throws IOException {
+    public void generateFile(InputData inputData, List<TestCase> testCases) throws IOException {
+
+        List<Parameter> parameters = inputData.getParameters();
+        String className = inputData.getClassName();
+        String packageName = inputData.getPackageName();
+        String targetClassName = inputData.getTargetClassName();
+        String targetMethodName = inputData.getTargetMethodName();
+
         String methodArgs = generateMethodSignature(parameters);
         String csvBody = generateCsvBody(parameters, testCases);
-        String printArgs = generatePrintArgs(parameters);
+        String callArgs = generateMethodCallArgs(parameters);
 
         String packagePath = packageName.replace(".", "/");
         Path directory = Path.of("src", "test", "java", packagePath);
 
         Files.createDirectories(directory);
-
         Path filePath = directory.resolve(className + ".java");
 
         String fileContent = """
                 package %s;
                 
+                import org.junit.jupiter.api.Assertions;
                 import org.junit.jupiter.params.ParameterizedTest;
                 import org.junit.jupiter.params.provider.CsvSource;
                 
@@ -38,13 +46,22 @@ public class JavaTestGenerator {
                         %s
                     })
                     void testGeneratedCombinations(%s) {
-                        System.out.println("Test running: " + %s);
+                        %s app = new %s();
+                        
+                        var result = app.%s(%s);
+                        
+                        assertEquals("???", result);
                     }
                 }
-                """.formatted(packageName, className, csvBody, methodArgs, printArgs);
+                """.formatted(
+                        packageName,
+                        className,
+                        csvBody,
+                        methodArgs,
+                        targetClassName, targetClassName,
+                        targetMethodName, callArgs);
 
         Files.writeString(filePath, fileContent, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
-
         System.out.println("File generated: " + filePath.toAbsolutePath());
     }
 
@@ -75,9 +92,9 @@ public class JavaTestGenerator {
         return sb.toString();
     }
 
-    private String generatePrintArgs(List<Parameter> parameters) {
+    private String generateMethodCallArgs(List<Parameter> parameters) {
         return parameters.stream()
                 .map(p -> p.name().toLowerCase())
-                .collect(Collectors.joining(" + \", \" + "));
+                .collect(Collectors.joining(", "));
     }
 }
