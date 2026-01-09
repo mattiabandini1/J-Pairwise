@@ -51,13 +51,13 @@ The project includes a demo configuration to let you try the tool immediately.
     Open `demo_config.json` in the root folder. It defines the parameters (Browser, OS, Role) and the target class (`DemoLoginManager`).
 
 3.  **Run the Generator:**
-    Run the `Main.java` class.
+    You can run it directly with the default demo configuration:
     ```bash
-    # Check your console output:
-    # ---J-PAIRWISE STARTED---
-    # Test cases generated: 12
-    # File generated: .../src/main/java/.../GeneratedDemoTest.java
-    # --- DONE ---
+    java -jar jpairwise.jar
+    ```
+    Or specify your own configuration file:
+    ```bash
+    java -jar jpairwise.jar my_custom_config.json
     ```
 
 4.  **Finish the Test:**
