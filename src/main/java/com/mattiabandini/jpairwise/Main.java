@@ -1,14 +1,11 @@
 package com.mattiabandini.jpairwise;
 
 import com.mattiabandini.jpairwise.engine.IpogStrategy;
-import com.mattiabandini.jpairwise.engine.Pair;
 import com.mattiabandini.jpairwise.io.JavaTestGenerator;
 import com.mattiabandini.jpairwise.model.Parameter;
 import com.mattiabandini.jpairwise.model.TestCase;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
