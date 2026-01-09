@@ -44,7 +44,7 @@ public class JavaTestGenerator {
 
     private String generateMethodSignature(List<Parameter> parameters) {
         return parameters.stream()
-                .map(p -> "String" + p.name().toLowerCase())
+                .map(p -> "String " + p.name().toLowerCase())
                 .collect(Collectors.joining(", "));
     }
 
