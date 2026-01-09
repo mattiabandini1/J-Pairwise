@@ -13,9 +13,10 @@ public class Main {
     public static void main(String[] args) {
         Parameter browser = new Parameter("Browser", List.of("Chrome", "Firefox"));
         Parameter os = new Parameter("OS", List.of("Windows", "Linux", "Mac"));
+        Parameter language = new Parameter("Language", List.of("English", "Italian", "Spanish"));
 
         IpogStrategy strategy = new IpogStrategy();
-        List<TestCase> tests = strategy.generateTestCase(List.of(browser, os));
+        List<TestCase> tests = strategy.generateTestCase(List.of(browser, os, language));
 
         System.out.println("Generated tests: " + tests.size());
         for (TestCase test : tests) {
