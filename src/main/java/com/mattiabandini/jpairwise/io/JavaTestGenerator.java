@@ -50,7 +50,7 @@ public class JavaTestGenerator {
                         
                         var result = app.%s(%s);
                         
-                        assertEquals("???", result);
+                        Assertions.assertEquals("???", result);
                     }
                 }
                 """.formatted(

@@ -17,21 +17,16 @@ public class Main {
             InputData input = parser.readInput("input.json");
 
             System.out.println("Input loaded successfully");
-            System.out.println("Target class: " + input.className());
-            System.out.println("Parameters found: " + input.parameters().size());
+            System.out.println("Target class: " + input.getClassName());
+            System.out.println("Parameters found: " + input.getParameters().size());
 
             IpogStrategy strategy = new IpogStrategy();
-            List<TestCase> tests = strategy.generateTestCase(input.parameters());
+            List<TestCase> tests = strategy.generateTestCase(input.getParameters());
 
             System.out.println("Test case generated: " + tests.size());
 
             JavaTestGenerator generator = new JavaTestGenerator();
-            generator.generateFile(
-                    input.parameters(),
-                    tests,
-                    input.className(),
-                    input.packageName()
-            );
+            generator.generateFile(input, tests);
 
             System.out.println("--- DONE ---");
         } catch (Exception e) {
