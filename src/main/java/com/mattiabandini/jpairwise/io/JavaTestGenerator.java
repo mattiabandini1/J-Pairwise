@@ -52,7 +52,7 @@ public class JavaTestGenerator {
                         
                         var expected = getExpectedResult(%s);
                         
-                        Assertions.assertEquals("???", result);
+                        Assertions.assertEquals(expected, result);
                     }
                     
                     private String getExpectedResult(%s) {
