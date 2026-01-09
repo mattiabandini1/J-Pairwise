@@ -35,7 +35,9 @@ public class IpogStrategy {
 
             Set<Pair> leftovers = extendedHorizontal(tests, newParam, i, previousParams);
 
-            System.out.println("Leftovers: " + leftovers.size());
+            extendedVertical(tests, leftovers, newParam, i, previousParams);
+
+            System.out.println("Parameter " + newParam.name() + " added. Total tests: " + tests.size());
         }
 
         return tests;
@@ -96,5 +98,65 @@ public class IpogStrategy {
             }
         }
         return allPairs;
+    }
+
+    private void extendedVertical(List<TestCase> tests, Set<Pair> leftovers, Parameter newParam, int newParamIndex, List<Parameter> prevParams) {
+        if (leftovers.isEmpty()) {
+            return;
+        }
+
+        List<TestCase> newRows = new ArrayList<>();
+
+        for (Pair pair : leftovers) {
+            boolean placed = false;
+
+            for (TestCase newRow : newRows) {
+                int p1Index = pair.paramIndex1();
+                int p2Index = pair.paramIndex2();
+                String p1Value = pair.value1();
+                String p2Value = pair.value2();
+
+                String name1 = (p1Index == newParamIndex) ? newParam.name() : prevParams.get(p1Index).name();
+                String name2 = (p2Index == newParamIndex) ? newParam.name() : prevParams.get(p2Index).name();
+
+                String valInRow1 = newRow.get(name1);
+                String valInRow2 = newRow.get(name2);
+
+                boolean compatible1 = (valInRow1 == null || valInRow1.equals(p1Value));
+                boolean compatible2 = (valInRow2 == null || valInRow2.equals(p2Value));
+
+                if (compatible1 && compatible2) {
+                    newRow.put(name1, p1Value);
+                    newRow.put(name2, p2Value);
+                    placed = true;
+                    break;
+                }
+            }
+            if (!placed) {
+                TestCase freshRow = new TestCase();
+
+                int p1Index = pair.paramIndex1();
+                int p2Index = pair.paramIndex2();
+                String name1 = (p1Index == newParamIndex) ? newParam.name() : prevParams.get(p1Index).name();
+                String name2 = (p2Index == newParamIndex) ? newParam.name() : prevParams.get(p2Index).name();
+
+                freshRow.put(name1, pair.value1());
+                freshRow.put(name2, pair.value2());
+                freshRow.put(newParam.name(), freshRow.get(newParam.name()));
+
+                newRows.add(freshRow);
+            }
+        }
+        for (TestCase row : newRows) {
+            for (Parameter p : prevParams) {
+                if (row.get(p.name()) == null) {
+                    row.put(p.name(), p.values().get(0));
+                }
+            }
+            if (row.get(newParam.name()) == null) {
+                row.put(newParam.name(), newParam.values().get(0));
+            }
+            tests.add(row);
+        }
     }
 }
