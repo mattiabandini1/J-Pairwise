@@ -13,8 +13,23 @@ public class Main {
         try {
             System.out.println("---J-PAIRWISE STARTED---");
 
+            String jsonPath = "demo_config.json";
+
+            if (args.length > 0) {
+                if (args[0].equals("--help") || args[0].equals("-h")) {
+                    System.out.println("Usage: java -jar jpairwise.jar [path/to/config.json]");
+                    System.out.println("If no file is specified, 'demo_config.json' will be used.");
+                    return;
+                }
+
+                jsonPath = args[0];
+                System.out.println("Custom configuration selected: " + jsonPath);
+            } else {
+                System.out.println("No file specified. Using default: " + jsonPath);
+            }
+
             JsonParser parser = new JsonParser();
-            InputData input = parser.readInput("demo_config.json");
+            InputData input = parser.readInput(jsonPath);
 
             IpogStrategy strategy = new IpogStrategy();
             List<TestCase> tests = strategy.generateTestCase(input.getParameters());

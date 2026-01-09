@@ -3,6 +3,7 @@ import org.gradle.api.tasks.testing.Test
 plugins {
     id("java")
     id("application")
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "com.mattiabandini.jpairwise"
@@ -21,6 +22,12 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "com.mattiabandini.jpairwise.Main"
+    }
 }
 
 java {
