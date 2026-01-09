@@ -35,7 +35,7 @@ I am currently an Engineering student building this tool to bridge the gap betwe
 - [x] Dependency Management (Jackson, JUnit 5).
 
 ### 2. Core Logic (🔄 In Progress)
-- [ ] Implement `Parameter` and `TestCase` records.
+- [x] Implement `Parameter` and `TestCase` records.
 - [ ] Implement `Pair` logic (Interaction tracking).
 - [ ] **Challenge:** Implement the **IPOG Strategy** (Horizontal & Vertical growth).
 - [ ] Unit Testing the algorithm with mock data.
