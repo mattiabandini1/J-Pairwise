@@ -1,0 +1,27 @@
+# IntelliJ IDEA specific files
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Gradle specific files
+.gradle/
+build/
+
+# Local configuration file (Important: often contains secrets/paths)
+local.properties
+
+# Log files
+*.log
+
+# Mac OS specific
+.DS_Store
+
+# Java class files
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
