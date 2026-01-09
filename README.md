@@ -34,13 +34,13 @@ I am currently an Engineering student building this tool to bridge the gap betwe
 - [x] Repository Architecture (Engine, IO, Model separation).
 - [x] Dependency Management (Jackson, JUnit 5).
 
-### 2. Core Logic (🔄 In Progress)
+### 2. Core Logic (✅ Done)
 - [x] Implement `Parameter` and `TestCase` records.
-- [ ] Implement `Pair` logic (Interaction tracking).
-- [ ] **Challenge:** Implement the **IPOG Strategy** (Horizontal & Vertical growth).
-- [ ] Unit Testing the algorithm with mock data.
+- [x] Implement `Pair` logic (Interaction tracking).
+- [x] **Challenge:** Implement the **IPOG Strategy** (Horizontal & Vertical growth).
+- [x] Unit Testing the algorithm with mock data.
 
-### 3. I/O & Application (🔜 Upcoming)
+### 3. I/O & Application (🔄 In Progress)
 - [ ] JSON Parser (Read `input.json`).
 - [ ] **Java Code Generator:** Use Java 21 Text Blocks to write `.java` files dynamically.
 - [ ] CLI Entry Point (`main` args processing).
