@@ -10,6 +10,7 @@ public class Main {
         Parameter p1 = new Parameter("Browser", List.of("Chrome", "Firefox"));
         System.out.println("Parameter created:" + p1);
 
+        // Uncomment to test if this parameter throws an exception
         // Parameter pError = new Parameter("Error", List.of());
 
         TestCase testCase = new TestCase();
