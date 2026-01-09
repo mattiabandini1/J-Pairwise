@@ -39,30 +39,36 @@ This project uses modern Java features to keep the code clean and efficient:
 * **Testing:** JUnit 5 (Jupiter & Parameterized Tests).
 * **Data:** Jackson (JSON processing).
 
-## ⚡ How to Run (Quick Start)
+## ⚡ How to Run
 
-The project includes a demo configuration to let you try the tool immediately.
+### Option A: Quick Start (Recommended for Users)
+No coding required. Just download and run.
+
+1.  **Download:** Go to the **Releases** page (right sidebar) and download the latest assets:
+    * `J-Pairwise-1.0-SNAPSHOT-all.jar`
+    * `demo_config.json`
+2.  **Run:** Open your terminal in the download folder and execute:
+    ```bash
+    java -jar J-Pairwise-1.0-SNAPSHOT-all.jar
+    ```
+    *(Note: You can also specify a custom config file: `java -jar J-Pairwise-1.0-SNAPSHOT-all.jar my_config.json`)*
+
+### Option B: Build from Source (For Developers)
+If you want to modify the code or build it yourself:
 
 1.  **Clone the repo:**
     ```bash
-    git clone https://github.com/mattiabandini1/J-Pairwise.git
+    git clone [https://github.com/mattiabandini1/J-Pairwise.git](https://github.com/mattiabandini1/J-Pairwise.git)
+    cd J-Pairwise
     ```
-2.  **Check the Config:**
-    Open `demo_config.json` in the root folder. It defines the parameters (Browser, OS, Role) and the target class (`DemoLoginManager`).
-
-3.  **Run the Generator:**
-    You can run it directly with the default demo configuration:
+2.  **Build the JAR:**
+    ```bash
+    ./gradlew shadowJar
+    ```
+3.  **Run:**
     ```bash
     java -jar build/libs/J-Pairwise-1.0-SNAPSHOT-all.jar
     ```
-    Or specify your own configuration file:
-    ```bash
-    java -jar build/libs/J-Pairwise-1.0-SNAPSHOT-all.jar my_custom_config.json
-    ```
-
-4.  **Finish the Test:**
-    Open the newly created `GeneratedDemoTest.java`. You will see a `getExpectedResult()` method throwing an exception.
-    **Implement your verification logic there** (e.g., `if (role.equals("Admin")) return "Success";`) and run the test with JUnit!
 
 ## 📂 Project Structure
 
