@@ -50,7 +50,18 @@ public class JavaTestGenerator {
                         
                         var result = app.%s(%s);
                         
+                        var expected = getExpectedResult(%s);
+                        
                         Assertions.assertEquals("???", result);
+                    }
+                    
+                    private String getExpectedResult(%s) {
+                        // TODO: Implement your verification logic here!
+                        // Example:
+                        // if (role.equals("Admin")) return "Success";
+                        // return "Failure";
+                        
+                        throw new UnsupportedOperationException("getExpectedResult() not implemented yet");
                     }
                 }
                 """.formatted(
@@ -59,7 +70,9 @@ public class JavaTestGenerator {
                         csvBody,
                         methodArgs,
                         targetClassName, targetClassName,
-                        targetMethodName, callArgs);
+                        targetMethodName, callArgs,
+                        callArgs,
+                        methodArgs);
 
         Files.writeString(filePath, fileContent, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
         System.out.println("File generated: " + filePath.toAbsolutePath());
